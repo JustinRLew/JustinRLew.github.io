@@ -1,49 +1,899 @@
-/* Basic styles for the website */
+/* GENERAL */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
+  font-family: "Poppins", sans-serif;
 }
 
-header {
-    background-color: #333;
-    color: white;
-    padding: 1rem;
-    text-align: center;
+html {
+  scroll-behavior: smooth;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+p {
+  color: rgb(85, 85, 85);
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+/* TRANSITION */
+
+a,
+.btn {
+  transition: all 300ms ease;
 }
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
+/* DESKTOP NAV */
+
+nav,
+.nav-links {
+  display: flex;
 }
+
+nav {
+  justify-content: space-around;
+  align-items: center;
+  height: 17vh;
+}
+
+.nav-links {
+  gap: 2rem;
+  list-style: none;
+  font-size: 1.5rem;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  text-decoration-color: white;
+}
+
+a:hover {
+  color: grey;
+  text-decoration: underline;
+  text-underline-offset: 1rem;
+  text-decoration-color: rgb(181, 181, 181);
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+.logo:hover {
+  cursor: default;
+}
+
+/* HAMBURGER MENU */
+
+#hamburger-nav {
+  display: none;
+}
+
+.hamburger-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.hamburger-icon span {
+  width: 100%;
+  height: 2px;
+  background-color: black;
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  width: fit-content;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links a {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: black;
+  text-decoration: none;
+  transition: all 0.3 ease-in-out;
+}
+
+.menu-links li {
+  list-style: none;
+}
+
+.menu-links.open {
+  max-height: 300px;
+}
+
+.hamburger-icon.open span:first-child {
+  transform: rotate(45deg) translate(10px, 5px);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:last-child {
+  transform: rotate(-45deg) translate(10px, -5px);
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+.hamburger-icon span:first-child {
+  opacity: 1;
+}
+
+.hamburger-icon span:first-child {
+  transform: none;
+}
+
+/* SECTIONS */
 
 section {
-    padding: 2rem;
-    margin: 1rem 0;
+  padding-top: 4vh;
+  height: 96vh;
+  margin: 0 10rem;
+  box-sizing: border-box;
+  min-height: fit-content;
 }
 
-.project {
-    background-color: white;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.section-container {
+  display: flex;
 }
+
+/* PROFILE SECTION */
+
+#profile {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  height: 80vh;
+}
+
+.section__pic-container {
+  display: flex;
+  height: 400px;
+  width: 400px;
+  margin: auto 0;
+}
+
+.section__text {
+  align-self: center;
+  text-align: center;
+}
+
+.section__text p {
+  font-weight: 600;
+}
+
+.section__text__p1 {
+  text-align: center;
+}
+
+.section__text__p2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+#socials-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  gap: 1rem;
+}
+
+/* ICONS */
+
+.icon {
+  cursor: pointer;
+  height: 2rem;
+}
+
+/* BUTTONS */
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  font-weight: 600;
+  transition: all 300ms ease;
+  padding: 1rem;
+  width: 8rem;
+  border-radius: 2rem;
+}
+
+.btn-color-1,
+.btn-color-2 {
+  border: rgb(53, 53, 53) 0.1rem solid;
+}
+
+.btn-color-1:hover,
+.btn-color-2:hover {
+  cursor: pointer;
+}
+
+.btn-color-1,
+.btn-color-2:hover {
+  background: rgb(53, 53, 53);
+  color: white;
+}
+
+.btn-color-1:hover {
+  background: rgb(0, 0, 0);
+}
+
+.btn-color-2 {
+  background: none;
+}
+
+.btn-color-2:hover {
+  border: rgb(255, 255, 255) 0.1rem solid;
+}
+
+.btn-container {
+  gap: 1rem;
+}
+
+/* ABOUT SECTION */
+
+#about {
+  position: relative;
+}
+
+.about-containers {
+  gap: 2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.about-details-container {
+  justify-content: center;
+  flex-direction: column;
+}
+
+.about-containers,
+.about-details-container {
+  display: flex;
+}
+
+.about-pic {
+  border-radius: 2rem;
+}
+
+.arrow {
+  position: absolute;
+  right: -5rem;
+  bottom: 2.5rem;
+}
+
+.details-container {
+  padding: 1.5rem;
+  flex: 1;
+  background: white;
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
+  text-align: center;
+}
+
+.section-container {
+  gap: 4rem;
+  height: 80%;
+}
+
+.section__pic-container {
+  height: 400px;
+  width: 400px;
+  margin: auto 0;
+}
+
+/* EXPERIENCE SECTION */
+
+#experience {
+  position: relative;
+}
+
+.experience-sub-title {
+  color: rgb(85, 85, 85);
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+.experience-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.article-container {
+  display: flex;
+  text-align: initial;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 2.5rem;
+  justify-content: space-around;
+}
+
+article {
+  display: flex;
+  width: 10rem;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+
+article .icon {
+  cursor: default;
+}
+
+/* PROJECTS SECTION */
+
+#projects {
+  position: relative;
+}
+
+.color-container {
+  border-color: rgb(163, 163, 163);
+  background: rgb(250, 250, 250);
+}
+
+.project-img {
+  border-radius: 2rem;
+  width: 90%;
+  height: 90%;
+}
+
+.project-title {
+  margin: 1rem;
+  color: black;
+}
+
+.project-btn {
+  color: black;
+  border-color: rgb(163, 163, 163);
+}
+
+/* CONTACT */
+
+#contact {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 70vh;
+}
+
+.section-container,
+.experience-details-container {
+  max-width: 100%; /* Ensure the container doesn't exceed the screen width */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+body {
+  margin: 0; /* Remove default margin */
+  overflow-x: hidden; /* Ensure no horizontal scroll */
+}
+
+.contact-info-upper-container {
+  display: flex;
+  justify-content: center;
+  border-radius: 2rem;
+  border: rgb(53, 53, 53) 0.1rem solid;
+  border-color: rgb(163, 163, 163);
+  background: (250, 250, 250);
+  margin: 2rem auto;
+  padding: 0.5rem;
+}
+
+.contact-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem;
+}
+
+.contact-info-container p {
+  font-size: larger;
+}
+
+.contact-icon {
+  cursor: default;
+}
+
+.email-icon {
+  height: 2.5rem;
+}
+
+/* FOOTER SECTION */
 
 footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
+  height: 26vh;
+  margin: 0 1rem;
 }
+
+footer p {
+  text-align: center;
+}
+
+/* Initial hidden state for animation */
+.details-container {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-in-out;
+}
+
+.details-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-containers {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Adjusts the space between blocks */
+  flex-wrap: wrap; /* Ensures wrapping on smaller screens */
+}
+
+.details-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 15px; /* Rounded corners */
+  padding: 20px;
+  flex: 1;
+  min-width: 250px; /* Ensures a minimum width for each block */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds subtle shadow */
+}
+
+.article-container {
+  display: flex;
+  align-items: center;
+}
+
+html,
+body {
+  overflow-x: hidden; /* Hide horizontal scroll */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: auto; /* Ensures there is no vertical overflow */
+}
+
+::-webkit-scrollbar {
+  width: 0px; /* Remove the scrollbar width */
+  background: transparent; /* Optional: Make background of scrollbar transparent */
+}
+
+.details-container article p {
+  font-weight: normal;
+}
+
+.article-container {
+  display: flex;
+  align-items: center; /* Aligns items horizontally */
+  margin-bottom: 15px; /* Adds space between each item */
+}
+
+.article-container img.icon {
+  margin-right: 15px; /* Space between icon and text */
+  width: 25px; /* Adjust size of the checkmark */
+  height: 25px;
+}
+
+.article-container div {
+  display: inline-block;
+  text-align: left; /* Aligns the text properly */
+}
+
+body {
+  background-color: white;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  background-color: white;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+body.light-mode {
+  background-color: white;
+  color: black;
+}
+
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+a.dark-mode {
+  color: white;
+}
+
+a.light-mode {
+  color: black;
+}
+
+.logo.dark-mode {
+  color: white;
+}
+
+.logo.light-mode {
+  color: black;
+}
+
+nav.dark-mode {
+  background-color: black;
+}
+
+nav.light-mode {
+  background-color: white;
+}
+
+body.dark-mode .btn-color-2 {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}
+
+body.dark-mode .btn-color-1 {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
+body.light-mode .btn-color-2 {
+  background-color: none;
+  color: black;
+  border: 1px solid black;
+}
+
+body.light-mode .btn-color-1 {
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+}
+
+.btn-color-1,
+.btn-color-2 {
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.dark-mode .text-container p {
+  color: white;
+}
+
+.dark-mode p {
+  color: white;
+}
+
+.light-mode .text-container p {
+  color: rgb(85, 85, 85);
+}
+
+.dark-mode .text-container p {
+  color: white; /* The long paragraph text turns white in dark mode */
+}
+
+.dark-mode .details-container h3,
+.dark-mode .details-container p {
+  color: black; /* Text for the Experience and Education boxes stays black */
+}
+
+.light-mode .text-container p {
+  color: rgb(85, 85, 85); /* Default color for paragraphs */
+}
+
+.light-mode .details-container h3,
+.light-mode .details-container p {
+  color: rgb(85, 85, 85); /* Default color in light mode */
+}
+
+body.dark-mode .contact-info-container p,
+body.dark-mode .contact-info-container a,
+body.dark-mode footer .nav-links a {
+  color: white;
+}
+
+body.dark-mode .contact-info-container img {
+  filter: invert(100%);
+}
+
+body.dark-mode nav#desktop-nav .nav-links a {
+  color: black;
+}
+
+body.dark-mode footer .nav-links a {
+  color: white;
+}
+
+/* CAROUSEL SECTION */
+
+/* Carousel wrapper to contain the scrolling items */
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  max-width: 100%;
+  padding: 20px 0;
+}
+
+.carousel {
+  display: flex;
+  animation: scroll 35s linear infinite;
+}
+
+.details-container {
+  flex: 0 0 300px;
+  margin-right: 20px;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-320px * 6)); /* Width of the item + margin * number of items */
+  }
+}
+
+/* Do not pause on hover */
+.carousel-wrapper:hover .carousel {
+  animation-play-state: running;
+}
+
+/* Gradient fade effect on the sides */
+.carousel-wrapper::before,
+.carousel-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.carousel-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.carousel-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.section__pic-container img {
+    border-radius: 15px; /* Adjust the value as needed for roundness */
+  }
+  
+  /* Remove any overflow and height that could cause scrolling */
+.experience-details-container {
+    display: flex;
+    flex-wrap: wrap; /* This will allow items to wrap to the next line if necessary */
+    justify-content: space-between; /* Distribute space evenly */
+  }
+  
+  /* Each column should naturally adjust to its content */
+  .column {
+    flex: 1;
+    margin: 10px; /* Adjust spacing between columns */
+    min-width: 300px; /* Set a minimum width to prevent columns from collapsing */
+  }
+  
+  .details-container {
+    margin-bottom: 20px; /* Add space between the tools */
+  }
+  
+  /* Ensure logo container stays in the middle without scrolling */
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  /* Add hover effect for enlarging the project boxes */
+#projects .details-container {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  #projects .details-container:hover {
+    transform: scale(1.05); /* Enlarges the box on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a shadow for a subtle 3D effect */
+  }
+  
+  /* Add hover effect for enlarging the profile picture */
+.section__pic-container img {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 15px; /* Keeps the rounded corners */
+  }
+  
+  .section__pic-container img:hover {
+    transform: scale(1.05); /* Enlarges the profile picture on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a shadow for a subtle 3D effect */
+  }
+
+  /* Add hover effect for the Experience and Education boxes */
+#about .details-container {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  #about .details-container:hover {
+    transform: scale(1.05); /* Enlarges the box on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a shadow for a subtle 3D effect */
+  }
+  
+/* Add hover effect for the CompTIA Certifications and Other Certifications boxes */
+#CertificationsSkills .about-containers .details-container {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  #CertificationsSkills .about-containers .details-container:hover {
+    transform: scale(1.05); /* Enlarges the box on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a shadow for a subtle 3D effect */
+  }
+  
+  
+  /* Add hover effect for the Front-end Development and Programming Languages boxes */
+  #experience .details-container {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  #experience .details-container:hover {
+    transform: scale(1.05); /* Enlarges the box on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a shadow for a subtle 3D effect */
+  }
+  
+  /* Add hover effect for the Tools section boxes */
+#tools .details-container {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  #tools .details-container:hover {
+    transform: scale(1.05); /* Enlarges the boxes on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a shadow for a subtle 3D effect */
+  }
+
+  /* Ensure uniform sizing and spacing between columns */
+.tools-section {
+    gap: 30px; /* Adjust gap between left and right columns */
+  }
+  
+  .tools-section .column {
+    flex: 1; /* Keep both columns evenly sized */
+    min-width: 300px; /* Prevent columns from shrinking */
+  }
+
+  /* Add left margin to the main wrapper */
+body {
+    margin-left: 10px; /* Increase this value to adjust the left margin */
+  }
+  
+  /* Increase the gap between the boxes in the CertificationsSkills section */
+#CertificationsSkills .about-containers {
+    display: flex;
+    justify-content: space-around; /* Ensures even space on both sides */
+    gap: 50px; /* Increase this value to make the gap larger */
+  }
+  
+  #CertificationsSkills .details-container {
+    flex: 1;
+    min-width: 300px; /* Ensures consistent width for the boxes */
+    max-width: 400px;
+  }
+
+  /* Ensure even spacing between the columns in the Skills section */
+#experience .about-containers {
+    display: flex;
+    justify-content: space-around;
+    gap: 0px;
+    flex-wrap: wrap; /* Allows wrapping for responsiveness */
+  }
+  
+  #experience .details-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  #experience .details-container:hover {
+    transform: scale(1.05); /* Enlarges the boxes on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a subtle 3D effect */
+  }
+  
+  /* Center and space logos in the middle column */
+  #experience .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  #experience .logo-container img {
+    max-width: 100px;
+    margin-bottom: 10px;
+  }
+  
+  
