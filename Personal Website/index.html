@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+      /* Carousel wrapper to contain the scrolling items */
+      .carousel-wrapper {
+        position: relative;
+        overflow: hidden;
+        max-width: 100%;
+        padding: 20px 0;
+      }
+
+      .carousel {
+        display: flex;
+        animation: scroll 35s linear infinite;
+      }
+
+      .details-container {
+        flex: 0 0 300px;
+        margin-right: 20px;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(-320px * 6));
+        }
+      }
+
+      /* Gradient fade effect on the sides */
+      .carousel-wrapper::before,
+      .carousel-wrapper::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .carousel-wrapper::before {
+        left: 0;
+        background: linear-gradient(
+          to right,
+          rgba(255, 255, 255, 1),
+          rgba(255, 255, 255, 0)
+        );
+      }
+
+      .carousel-wrapper::after {
+        right: 0;
+        background: linear-gradient(
+          to left,
+          rgba(255, 255, 255, 1),
+          rgba(255, 255, 255, 0)
+        );
+      }
+
+      /* Skeleton Loader */
+      #skeleton-loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+      }
+
+      .skeleton-logo,
+      .skeleton-nav,
+      .skeleton-profile-pic,
+      .skeleton-text,
+      .skeleton-btn {
+        background-color: #ddd;
+        margin-bottom: 1rem;
+        border-radius: 4px;
+      }
+
+      .skeleton-logo {
+        width: 150px;
+        height: 30px;
+      }
+
+      .skeleton-nav {
+        width: 100%;
+        height: 50px;
+        max-width: 600px;
+      }
+
+      .skeleton-profile-pic {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+      }
+
+      .skeleton-text {
+        width: 80%;
+        height: 20px;
+        max-width: 500px;
+      }
+
+      .skeleton-btn-container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .skeleton-btn {
+        width: 120px;
+        height: 40px;
+      }
+
+      /* New style for logo container */
+      .logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      /* Adjust the size of the logos */
+      .cert-logo {
+        width: 90px;
+        height: auto;
+      }
+
+      /* General Flexbox Layout for Tools Section */
+      .tools-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 30px;
+      }
+
+      /* Flexbox Layout for Column */
+      .column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      /* Logo Container in the Middle */
+      .logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      }
+
+      .details-container {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+
+      /* Style for logos in the middle column */
+      .logo-container img {
+        max-width: 100px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Skeleton Loader -->
+    <div id="skeleton-loader">
+      <div class="skeleton-logo"></div>
+      <div class="skeleton-nav"></div>
+      <div class="skeleton-profile-pic"></div>
+      <div class="skeleton-text"></div>
+      <div class="skeleton-btn-container">
+        <div class="skeleton-btn"></div>
+        <div class="skeleton-btn"></div>
+      </div>
+    </div>
+
+    <!-- The rest of your page content starts here -->
+    <nav id="desktop-nav">
+      <div class="logo">Justin R. Lew</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#CertificationsSkills">Certifications & Skills</a></li>
+          <li><a href="#tools">Tools</a></li> <!-- Added Tools Section -->
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <!-- Light/Dark Mode Toggle Switch -->
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <div class="slider round"></div>
+        </label>
+        <em></em>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">Justin R. Lew</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#tools" onclick="toggleMenu()">Tools</a></li> <!-- Added Tools Section -->
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="./assets/profile-pic.png" alt="Justin Lew profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Justin R. Lew</h1>
+        <p class="section__text__p2"></p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('./assets/JustinRLewResume.pdf')"
+          >
+            Download résumé
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://www.linkedin.com/in/justinrlew/'"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='https://github.com/JustinRLew'"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="./assets/about-pic.png"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Experience</h3>
+              <p>1+ years <br />Information Security</p>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Education</h3>
+              <p>Bachelor of Science<br />Cybersecurity & Information Assurance</p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p>
+              I'm a highly motivated graduate with a degree in Cybersecurity and
+              Information Assurance! I'm also certified in multiple CompTIA tracks
+              (PenTest+, CySA+, Security+, etc.), with hands-on experience in IT
+              support, help desk troubleshooting, and web development. Over time, I've gained
+              excellent communication skills with a proven ability to
+              work well in a team. I'm also highly adaptable with a customer-centric
+              mindset, and ready to apply technical knowledge while further
+              developing my cybersecurity expertise.
+            </p>
+          </div>
+        </div>
+      </div>
+      <a href="#CertificationsSkills">
+        <img
+          src="./assets/arrow.png"
+          alt="Arrow icon"
+          class="icon arrow"
+        />
+      </a>
+    </section>
+
+    <section id="CertificationsSkills" style="margin-bottom: 50px;">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Certifications</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">CompTIA Certifications</h2>
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                <div>
+                  <h3>CompTIA PenTest+</h3>
+                  <p>Issued: Aug 2024</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                <div>
+                  <h3>CompTIA CySA+</h>
+                  <p>Issued: Jun 2024</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                <div>
+                  <h3>CompTIA Security+</h>
+                  <p>Issued: Oct 2023</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                <div>
+                  <h3>CompTIA Project+</h>
+                  <p>Issued: Apr 2024</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                <div>
+                  <h3>CompTIA Network+</h>
+                  <p>Issued: Sep 2023</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                <div>
+                  <h3>CompTIA A+</h>
+                  <p>Issued: Jul 2023</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Middle Column: Logos -->
+          <div class="logo-container">
+            <img src="./assets/comptiapentest-logo.png" alt="CompTIA PenTest+ logo" class="cert-logo" />
+            <img src="./assets/comptiacysa-logo.png" alt="CompTIA CySa+ logo" class="cert-logo" />
+            <img src="./assets/comptiasecurity-logo.png" alt="CompTIA Security+ logo" class="cert-logo" />
+            <img src="./assets/comptiaproject-logo.png" alt="CompTIA Project+ logo" class="cert-logo" />
+            <img src="./assets/comptianetwork-logo.png" alt="CompTIA Network+ logo" class="cert-logo" />
+            <img src="./assets/comptiaA-logo.png" alt="CompTIA A+ logo" class="cert-logo" />
+            <img src="./assets/isc2-logo.png" alt="ISC2 logo" class="cert-logo" />
+            <img src="./assets/itil-logo.png" alt="ITIL logo" class="cert-logo" />
+            <img src="./assets/lpi-logo.png" alt="LPI Linux logo" class="cert-logo" />
+          </div>
+
+          <!-- Right Column: Other Certifications -->
+          <div class="details-container">
+            <h2 class="experience-sub-title">Other Certifications</h2>
+            <div class="article-container">
+                <article>
+                    <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                    <div>
+                      <h3>ISC2 CCSP: Certified Cloud Security Professional</h3>
+                      <p>Issued: Aug 2024</p>
+                    </div>
+                  </article>
+                <article>
+                    <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                    <div>
+                      <h3>ISC2 SSCP: Systems Security Certified Practitioner</h3>
+                      <p>Issued: Feb 2024</p>
+                    </div>
+                  </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                <div>
+                  <h3>ITIL 4 Foundation - IT Service Management</h3>
+                  <p>Issued: Oct 2023 (GR671577319JL)</p>
+                </div>
+              </article>
+              
+              <article>
+                <img src="./assets/checkmark.png" alt="Certification icon" class="icon" />
+                <div>
+                  <h3>LPI Linux Essentials</h>
+                  <p>Issued: Dec 2023</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Skills</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Front-end Development</h2>
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Skill icon" class="icon" />
+                <div>
+                  <h3>HTML</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Skill icon" class="icon" />
+                <div>
+                  <h3>CSS</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Skill icon" class="icon" />
+                <div>
+                  <h3>JS</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              
+            </div>
+          </div>
+
+          <!-- Middle Column: Logos -->
+          <div class="logo-container">
+            <img src="./assets/htmlcssjs-logo.png" alt="HTMLCSSJS logo" class="cert-logo" />
+            <img src="./assets/python-logo.png" alt="Python logo" class="cert-logo" />
+            <img src="./assets/js-logo.png" alt="JavaScript logo" class="cert-logo" />
+            <img src="./assets/linux-logo.png" alt="Linux logo" class="cert-logo" />
+            <img src="./assets/sql-logo.png" alt="SQL logo" class="cert-logo" />
+          </div>
+
+          <div class="details-container">
+            <h2 class="experience-sub-title">Programming Languages</h2>
+            <div class="article-container">
+              <article>
+                <img src="./assets/checkmark.png" alt="Skill icon" class="icon" />
+                <div>
+                  <h3>Python</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Skill icon" class="icon" />
+                <div>
+                  <h3>JS</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Skill icon" class="icon" />
+                <div>
+                  <h3>Linux</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img src="./assets/checkmark.png" alt="Skill icon" class="icon" />
+                <div>
+                  <h3>SQL</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" style="margin-bottom: 50px;">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Tools</h1>
+      <div class="experience-details-container">
+        <div class="tools-section">
+          <div class="column">
+            <div class="details-container">
+              <h2 class="experience-sub-title">Network Monitoring & Analysis</h2>
+              <div class="article-container">
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>Wireshark</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>Nmap</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="details-container">
+              <h2 class="experience-sub-title">Password Cracking & Authentication</h2>
+              <div class="article-container">
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>Hydra</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>John the Ripper</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>Hashcat</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="details-container">
+              <h2 class="experience-sub-title">Firewall & Intrusion Detection</h2>
+              <div class="article-container">
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>pfSense</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>Cowrie</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle Column: Logos -->
+          <div class="logo-container">
+            <img src="./assets/wireshark-logo.png" alt="Wireshark logo" class="cert-logo" />
+            <img src="./assets/nmap-logo.png" alt="Nmap logo" class="cert-logo" />
+            <img src="./assets/pfsense-logo.png" alt="pfSense logo" class="cert-logo" />
+            
+            <img src="./assets/metasploit-logo.png" alt="Metasploit logo" class="cert-logo" />
+            <img src="./assets/nessus-logo.png" alt="Nessus logo" class="cert-logo" />
+            <img src="./assets/openvas-logo.png" alt="OpenVAS logo" class="cert-logo" />
+            <img src="./assets/hydra-logo.png" alt="Hydra logo" class="cert-logo" />
+            <img src="./assets/johntheripper-logo.png" alt="John the Ripper logo" class="cert-logo" />
+            
+            <img src="./assets/splunk-logo.png" alt="Splunk logo" class="cert-logo" />
+            <img src="./assets/gophish-logo.png" alt="GoPhish logo" class="cert-logo" />
+          
+          </div>
+
+          <div class="column">
+            <div class="details-container">
+              <h2 class="experience-sub-title">Vulnerability Scanning & Exploitation</h2>
+              <div class="article-container">
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>Metasploit</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>Nessus</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>OpenVAS</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="details-container">
+              <h2 class="experience-sub-title">Security Information and Event Management</h2>
+              <div class="article-container">
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>Splunk</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div class="details-container">
+              <h2 class="experience-sub-title">Phishing & Security Awareness</h2>
+              <div class="article-container">
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>GoPhish</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+                <article>
+                  <img src="./assets/checkmark.png" alt="Tool icon" class="icon" />
+                  <div>
+                    <h3>Have I Been Pwned</h3>
+                    <p>Basic</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+        <p class="section__text__p1">Browse My Recent</p>
+        <h1 class="title">Projects</h1>
+        <div class="carousel-wrapper">
+          <div class="carousel">
+            <!-- Project Zero -->
+            <div class="details-container color-container" id="projects-placeholder">
+              <div class="article-container">
+                <img src="./assets/projects-placeholder.png" alt="Project 0" class="project-img" />
+              </div>
+              <h2 class="experience-sub-title project-title">Projects</h2>
+              <div class="btn-container">
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew?tab=repositories'">Github</button>
+              
+              </div>
+            </div>
+      
+            <!-- Project One -->
+            <div class="details-container color-container" id="project-1">
+              <div class="article-container">
+                <img src="./assets/project-1.png" alt="Project 1" class="project-img" />
+              </div>
+              <h2 class="experience-sub-title project-title">Personal Firewall & Network Traffic Monitoring</h2>
+              <div class="btn-container">
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew/Personal-Firewall-and-Network-Traffic-Monitoring'">Github</button>
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew'">Live Demo</button>
+              </div>
+            </div>
+      
+            <!-- Project Two -->
+            <div class="details-container color-container" id="project-2">
+              <div class="article-container">
+                <img src="./assets/project-2.png" alt="Project 2" class="project-img" />
+              </div>
+              <h2 class="experience-sub-title project-title">Brute-Force Attack Simulation</h2>
+              <div class="btn-container">
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew/Brute-Force-Attack-Simulation'">Github</button>
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew'">Live Demo</button>
+              </div>
+            </div>
+      
+            <!-- Project Three -->
+            <div class="details-container color-container" id="project-3">
+              <div class="article-container">
+                <img src="./assets/project-3.png" alt="Project 3" class="project-img" />
+              </div>
+              <h2 class="experience-sub-title project-title">Honeypot - Creation & Deployment</h2>
+              <div class="btn-container">
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew/Honey-Pot-Creation-and-Deployment'">Github</button>
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew'">Live Demo</button>
+              </div>
+            </div>
+      
+            <!-- Project Four -->
+            <div class="details-container color-container" id="project-4">
+              <div class="article-container">
+                <img src="./assets/project-4.png" alt="Project 4" class="project-img" />
+              </div>
+              <h2 class="experience-sub-title project-title">Phishing Simulation Tool</h2>
+              <div class="btn-container">
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew/Phishing-Simulation-Tool'">Github</button>
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew'">Live Demo</button>
+              </div>
+            </div>
+      
+            <!-- Project Five -->
+            <div class="details-container color-container" id="project-5">
+              <div class="article-container">
+                <img src="./assets/project-5.png" alt="Project 5" class="project-img" />
+              </div>
+              <h2 class="experience-sub-title project-title">Password Strength Checker</h2>
+              <div class="btn-container">
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew/Password-Strength-Checker'">Github</button>
+                <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/JustinRLew'">Live Demo</button>
+              </div>
+            </div>
+              <!-- Project Six/In-Progress -->
+              <div class="details-container color-container" id="project-6">
+                <div class="article-container">
+                  <img src="./assets/project-6.png" alt="Project 6" class="project-img" />
+                </div>
+                <h2 class="experience-sub-title project-title">Next Project Coming Soon!</h2>
+                
+              </div>
+          </div>
+        </div>
+    </section>
+      
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p>
+            <a href="mailto:justinlew1000@gmail.com">justinlew1000@gmail.com</a>
+          </p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p>
+            <a href="https://www.linkedin.com/in/justinrlew/">LinkedIn</a>
+          </p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#CertificationsSkills">Certifications & Skills</a></li>
+            <li><a href="#tools">Tools</a></li> <!-- Added Tools Section -->
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>&#169; 2024 Justin Lew | All Rights Reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+
+    <script>
+      // Remove skeleton loader after page content loads
+      window.addEventListener("load", function () {
+        const skeletonLoader = document.getElementById("skeleton-loader");
+        skeletonLoader.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
