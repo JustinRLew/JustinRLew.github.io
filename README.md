@@ -1,1 +1,1 @@
-Welcome to my personal portfolio website! This is a showcase of my skills, certifications, projects, and contact information. The website is designed to present my journey as a cybersecurity and front-end developer professional.
+Welcome to my personal portfolio website! This is a showcase of my skills, certifications, projects, and contact information. 
